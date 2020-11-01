@@ -2,6 +2,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 var path = require('path')
 const express = require('express')
+var bodyParser = require('body-parser')
 const mockAPIResponse = require('./mockAPI.js')
 
 const projectData = {};
@@ -9,6 +10,12 @@ const projectData = {};
 const app = express()
 
 app.use(express.static('dist'))
+
+// app.use(bodyParser.urlencoded({
+//     extended: false
+// }))
+
+app.use(bodyParser.text())
 
 console.log(__dirname)
 
@@ -33,7 +40,7 @@ var fs = require('fs');
 var options = {
     'method': 'POST',
     'hostname': 'api.meaningcloud.com',
-    'path': `/sentiment-2.1?key=${process.env.API_KEY}&lang=en&of=json&txt=happy%20happy%20every`,
+    'path': `/sentiment-2.1?key=${process.env.API_KEY}&lang=auto&url=http://www.twitter.com`,
     'headers': {},
     'maxRedirects': 20
 };
@@ -53,6 +60,7 @@ var req = https.request(options, function (res) {
         // console.log(body.toJSON());
         const data = JSON.parse(body);
         projectData.data = data;
+        console.log([data.status.code, data.status.msg, data.confidence]);
     });
 
     res.on("error", function (error) {
@@ -60,7 +68,7 @@ var req = https.request(options, function (res) {
     });
 });
 
-// app.post('/add', function (req, res) {
+// app.post('/', function (req, res) {
 //     res.send(projectData);
 // });
 
@@ -68,5 +76,7 @@ app.get('/sentiment', (req, res) => {
     res.send(JSON.stringify(projectData));
     console.log('Get route called');
 });
+
+
 
 req.end();
