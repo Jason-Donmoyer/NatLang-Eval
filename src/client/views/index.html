@@ -20,21 +20,26 @@
 
     <main>
         <section>
-            <form class="" onsubmit="return handleSubmit(event)">
-                <input id="name" type="text" name="input" value="" onblur="onBlur()" placeholder="Name">
-                <input type="submit" name="" value="submit" onclick="return handleSubmit(event)"
-                    onsubmit="return handleSubmit(event)">
+            <form class="" onsubmit="return Client.handleSubmit(event)">
+                <input id="targetUrl" type="text" placeholder="Enter a valid url">
+                <input id="submit-button" type="submit" onclick="return Client.handleSubmit(event)"
+                    onsubmit="return Client.handleSubmit(event)">
             </form>
             <section>
 
                 <section>
-                    <strong>Form Results:</strong>
-                    <div id="results"></div>
+                    <h1>Your results:</h1>
+                    <div id="results">
+                        <h3 id="score"></h3>
+                        <p id="subjectivity"></p>
+                        <p id="confidence"></p>
+                        <p id="irony"></p>
+                    </div>
                 </section>
     </main>
 
     <footer>
-        <p>This is a footer</p>
+        <p>&copy 2020</p>
     </footer>
 
 </body>
