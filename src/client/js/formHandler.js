@@ -1,17 +1,22 @@
-const checkForValidUrl = require('./validityCheck');
+const fetch = require('node-fetch');
 
-const
+const {
+    checkForValidUrl
+} = require('./validityCheck');
+
+
 
 function handleSubmit(event) {
     event.preventDefault();
 
     let formInputUrl = document.querySelector('#targetUrl').value;
+    console.log(formInputUrl);
     console.log("::: Form Submitted :::");
 
     if (checkForValidUrl(formInputUrl)) {
         console.log('Valid input...')
 
-        fetch('https://localhost:8080/results', {
+        fetch('http://localhost:8080/results', {
                 method: 'POST',
                 cache: 'no-cache',
                 credentials: 'same-origin',
@@ -22,8 +27,8 @@ function handleSubmit(event) {
             })
             .then((res) => res.json())
             .then((res) => {
-                console.log(res);
-
+                console.log(res.confidence);
+                document.querySelector('#confidence').textContent = res.confidence;
 
             });
     } else {
@@ -33,7 +38,7 @@ function handleSubmit(event) {
 
 export {
     handleSubmit
-};
+}
 
 
 

@@ -11,6 +11,8 @@ module.exports = {
     devtool: 'source-map',
     stats: 'verbose',
     output: {
+        // filename: '[name.bundle.js]',
+        // path: path.resolve(__dirname, 'dist'),
         libraryTarget: 'var',
         library: 'Client'
     },

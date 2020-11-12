@@ -12,6 +12,7 @@ import './styles/form.scss'
 import './styles/header.scss'
 
 export {
-  handleSubmit,
-  checkForValidUrl
+  checkForValidUrl,
+  handleSubmit
+
 }
