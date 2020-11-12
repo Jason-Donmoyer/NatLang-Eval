@@ -29,10 +29,29 @@ function handleSubmit(event) {
             .then((res) => {
                 console.log(res.confidence);
                 document.querySelector('#confidence').textContent = res.confidence;
-
+                document.querySelector('#subjectivity').textContent = res.subjectivity;
+                document.querySelector('#score').textContent = scoreName(res.score_tag);
+                document.querySelector('#irony').textContent = res.irony;
             });
     } else {
         console.log('Not A Valid URL!');
+    }
+}
+
+const scoreName = (scoreAbbr) => {
+    switch (scoreAbbr) {
+        case 'P+', 'P':
+            return 'Positive';
+            break;
+        case 'N+', 'N':
+            return 'Negative';
+            break;
+        case 'NEU':
+            return 'Neutral';
+            break;
+        default:
+            'No Sentiment';
+            break;
     }
 }
 

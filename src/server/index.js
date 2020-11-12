@@ -12,7 +12,7 @@ const serverMsg = [
 
 const displayMsg = serverMsg[Math.floor(Math.random() * serverMsg.length)];
 
-
+let projectData = [];
 
 
 //const path = require('path');
@@ -48,11 +48,21 @@ app.post('/results', async (req, res) => {
 
     try {
         const data = await response.json();
+        projectData = {
+            confidence: data.confidence,
+            subjectivity: data.subjectivity,
+            score_tag: data.score_tag,
+            irony: data.irony,
+        };
         res.send(data);
     } catch (err) {
         console.log('error', err);
     }
 });
+
+app.get('/results', (req, res) => {
+    res.send(projectData);
+})
 
 // Server port
 app.listen(PORT, () => {
