@@ -40,21 +40,31 @@ function handleSubmit(event) {
 
 const scoreName = (scoreAbbr) => {
     switch (scoreAbbr) {
-        case 'P+', 'P':
+        case 'P+':
+            return 'Very Positive';
+            break;
+        case 'P':
             return 'Positive';
             break;
-        case 'N+', 'N':
+        case 'N':
             return 'Negative';
+            break;
+        case 'N+':
+            return 'Very Negative';
             break;
         case 'NEU':
             return 'Neutral';
             break;
+        case 'NONE':
+            return 'No Sentiment';
+            break;
         default:
-            'No Sentiment';
+            return 'Invalid Data';
             break;
     }
 }
 
 export {
-    handleSubmit
+    handleSubmit,
+    scoreName
 }
