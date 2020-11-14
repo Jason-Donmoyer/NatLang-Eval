@@ -28,10 +28,10 @@ function handleSubmit(event) {
             .then((res) => res.json())
             .then((res) => {
                 console.log(res.confidence);
-                document.querySelector('#confidence').textContent = res.confidence;
-                document.querySelector('#subjectivity').textContent = res.subjectivity;
-                document.querySelector('#score').textContent = scoreName(res.score_tag);
-                document.querySelector('#irony').textContent = res.irony;
+                document.querySelector('#confidence').textContent = `Confidence: ${res.confidence}`;
+                document.querySelector('#subjectivity').textContent = `Subjectivity: ${res.subjectivity}`;
+                document.querySelector('#score').textContent = `Overall Score: ${scoreName(res.score_tag).toUpperCase()}`;
+                document.querySelector('#irony').textContent = `Irony: ${res.irony}`;
             });
     } else {
         console.log('Not A Valid URL!');

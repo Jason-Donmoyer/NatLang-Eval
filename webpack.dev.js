@@ -23,6 +23,13 @@ module.exports = {
                 loader: "babel-loader"
             },
             {
+                test: /\.png$/,
+                loader: 'file-loader',
+                options: {
+                    name: '[name].[ext]'
+                }
+            },
+            {
                 test: /\.scss$/,
                 use: ['style-loader', 'css-loader', 'sass-loader']
             }
